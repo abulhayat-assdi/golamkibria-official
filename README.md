@@ -8,11 +8,12 @@ A modern, premium single-page portfolio website built with React, featuring a bo
 - **Smooth Animations**: Expressive transitions using CSS transforms (~200ms)
 - **Fully Responsive**: Optimized for all devices (340px to 1320px+)
 - **Performance Focused**: Lazy loading with React Suspense
+- **Blog Management System**: Easy-to-use blog system with Bengali language support
 - **Interactive Components**: 
   - Sticky navbar with active section highlighting
   - Mobile hamburger menu with slide-in animation
   - Swiper carousel for blog posts
-  - Contact form with validation
+  - Contact form with EmailJS integration
   - Scroll to top button
 
 ## 📋 Prerequisites
@@ -41,7 +42,7 @@ Start the development server:
 npm run dev
 ```
 
-The site will be available at `http://localhost:3000`
+The site will be available at `http://localhost:5173`
 
 ## 🏗️ Build
 
@@ -80,6 +81,29 @@ npm run preview
    firebase deploy
    ```
 
+**Live Site**: https://golamkibria-official.web.app
+
+## 📝 Blog Management
+
+This portfolio includes a comprehensive blog management system that supports both Bengali and English content.
+
+### Quick Start - Adding a New Blog
+
+See `QUICK_START.md` for a quick guide on adding new blog posts.
+
+### Detailed Documentation
+
+- **Blog Management Guide**: `BLOG_MANAGEMENT_GUIDE.md` - Complete guide for managing blogs
+- **Blog Template**: `blog-template.md` - Template for creating new blog posts
+
+### Blog Features
+
+- ✅ Bengali and English language support
+- ✅ Categories and tags
+- ✅ Easy data management through `src/data/blogData.js`
+- ✅ No coding knowledge required
+- ✅ Responsive blog cards with images
+
 ## 📁 Project Structure
 
 ```
@@ -99,12 +123,15 @@ gk-portfolio/
 │   ├── config/          # Configuration files
 │   │   └── firebase.js
 │   ├── data/            # Static data
-│   │   └── blogData.js
+│   │   └── blogData.js  # Blog posts data
 │   ├── utils/           # Utility functions
 │   │   └── smoothScroll.js
 │   ├── App.jsx          # Main app component
 │   ├── main.jsx         # Entry point
 │   └── index.css        # Global styles
+├── BLOG_MANAGEMENT_GUIDE.md  # Blog management documentation
+├── blog-template.md          # Blog post template
+├── QUICK_START.md            # Quick start guide
 ├── index.html
 ├── package.json
 ├── vite.config.js
@@ -130,7 +157,7 @@ gk-portfolio/
    - `src/components/Contact.jsx`
    - `src/components/Footer.jsx`
 
-4. **Blog Posts**: Modify `src/data/blogData.js`
+4. **Blog Posts**: Modify `src/data/blogData.js` (See `BLOG_MANAGEMENT_GUIDE.md`)
 
 ### Color Scheme
 
@@ -146,6 +173,7 @@ The purple color palette is defined in `tailwind.config.js`. You can customize:
 - **Styling**: Tailwind CSS + DaisyUI
 - **Carousel**: Swiper.js
 - **Icons**: React Icons
+- **Email Service**: EmailJS
 - **Backend**: Firebase (Firestore + Hosting)
 - **Font**: Work Sans (Google Fonts)
 
@@ -171,10 +199,9 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👤 Author
 
 **Golam Kibria**
-- Portfolio: [Your Portfolio URL]
-- Email: hello@golamkibria.com
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
+- Portfolio: https://golamkibria-official.web.app
+- Email: mohammadabulhayatt@gmail.com
+- GitHub: [@abulhayat-assdi](https://github.com/abulhayat-assdi)
 
 ## 🙏 Acknowledgments
 
@@ -182,6 +209,7 @@ This project is open source and available under the [MIT License](LICENSE).
 - Icons from React Icons
 - Fonts from Google Fonts
 - Carousel by Swiper.js
+- Email service by EmailJS
 
 ---
 
