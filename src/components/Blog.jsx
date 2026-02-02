@@ -1,11 +1,18 @@
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import BlogCard from './BlogCard';
-import { blogData } from '../data/blogData';
+import BlogModal from './BlogModal';
+// import { blogData } from '../data/blogData'; // Replaced by hook
+import { Link } from 'react-router-dom';
+import { useBlogs } from '../hooks/useBlogs';
 
 const Blog = () => {
+    const [selectedBlog, setSelectedBlog] = useState(null);
+    const { blogs } = useBlogs();
+
     return (
         <section id="blog" className="py-20 bg-white">
             <div className="container-custom">
@@ -45,13 +52,34 @@ const Blog = () => {
                     }}
                     className="pb-12"
                 >
-                    {blogData.map((blog) => (
-                        <SwiperSlide key={blog.id}>
-                            <BlogCard blog={blog} />
+                    {blogs.map((blog) => (
+                        <SwiperSlide key={blog.id} className="h-auto">
+                            <BlogCard
+                                blog={blog}
+                                onReadMore={setSelectedBlog}
+                            />
                         </SwiperSlide>
                     ))}
                 </Swiper>
+
+                {/* See All Blogs Button */}
+                <div className="text-center mt-8">
+                    <Link
+                        to="/blogs"
+                        className="inline-block px-8 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                    >
+                        See All Blogs
+                    </Link>
+                </div>
             </div>
+
+            {/* Blog Modal */}
+            {selectedBlog && (
+                <BlogModal
+                    blog={selectedBlog}
+                    onClose={() => setSelectedBlog(null)}
+                />
+            )}
         </section>
     );
 };

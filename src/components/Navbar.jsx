@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { smoothScrollTo } from '../utils/smoothScroll';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ activeSection }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -23,8 +26,17 @@ const Navbar = ({ activeSection }) => {
     ];
 
     const handleNavClick = (id) => {
-        smoothScrollTo(id);
         setIsMobileMenuOpen(false);
+
+        if (location.pathname !== '/') {
+            navigate('/');
+            // Small delay to allow navigation to complete before scrolling
+            setTimeout(() => {
+                smoothScrollTo(id);
+            }, 100);
+        } else {
+            smoothScrollTo(id);
+        }
     };
 
     return (

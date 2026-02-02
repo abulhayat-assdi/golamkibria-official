@@ -1,11 +1,14 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Lazy load components
 const Navbar = lazy(() => import('./components/Navbar'));
-const Hero = lazy(() => import('./components/Hero'));
-const Profile = lazy(() => import('./components/Profile'));
-const Blog = lazy(() => import('./components/Blog'));
-const Contact = lazy(() => import('./components/Contact'));
+const Home = lazy(() => import('./pages/Home'));
+const AllBlogs = lazy(() => import('./pages/AllBlogs'));
+const Login = lazy(() => import('./pages/Login'));
+const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
+const EditBlog = lazy(() => import('./pages/admin/EditBlog'));
+const ProtectedRoute = lazy(() => import('./components/ProtectedRoute'));
 const Footer = lazy(() => import('./components/Footer'));
 const ScrollToTop = lazy(() => import('./components/ScrollToTop'));
 
@@ -43,17 +46,39 @@ function App() {
     }, []);
 
     return (
-        <div className="min-h-screen">
-            <Suspense fallback={<LoadingSpinner />}>
-                <Navbar activeSection={activeSection} />
-                <Hero />
-                <Profile />
-                <Blog />
-                <Contact />
-                <Footer />
-                <ScrollToTop />
-            </Suspense>
-        </div>
+        <BrowserRouter>
+            <div className="min-h-screen flex flex-col">
+                <Suspense fallback={<LoadingSpinner />}>
+                    <Navbar activeSection={activeSection} />
+                    <main className="flex-grow">
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/blogs" element={<AllBlogs />} />
+                            <Route path="/login" element={<Login />} />
+
+                            {/* Admin Routes */}
+                            <Route path="/admin" element={
+                                <ProtectedRoute>
+                                    <Dashboard />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/admin/new" element={
+                                <ProtectedRoute>
+                                    <EditBlog />
+                                </ProtectedRoute>
+                            } />
+                            <Route path="/admin/edit/:id" element={
+                                <ProtectedRoute>
+                                    <EditBlog />
+                                </ProtectedRoute>
+                            } />
+                        </Routes>
+                    </main>
+                    <Footer />
+                    <ScrollToTop />
+                </Suspense>
+            </div>
+        </BrowserRouter>
     );
 }
 

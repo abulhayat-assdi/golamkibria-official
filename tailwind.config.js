@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// trigger rebuild
 export default {
     content: [
         "./index.html",
@@ -65,7 +66,10 @@ export default {
             },
         },
     },
-    plugins: [require('daisyui')],
+    plugins: [
+        require('daisyui'),
+        require('@tailwindcss/typography'),
+    ],
     daisyui: {
         themes: [
             {
